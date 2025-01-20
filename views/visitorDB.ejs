@@ -12,9 +12,65 @@
             --bg-color: #f7fff7;
         }
         
+        .btn-lg{
+            position: relative;
+            object-position: center;
+            top:93px;
+        }
+
+
+
+        .btn-lg:hover{
+            background-color: none;
+
+        }
+
+        .btn-light {
+            font-weight: bold;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: none;
+    --bs-btn-border-color: none;
+    --bs-btn-hover-color: #e6e6e6;
+    --bs-btn-hover-bg: none;
+    --bs-btn-hover-border-color: #c6c7c8;
+    --bs-btn-focus-shadow-rgb: 211, 212, 213;
+    --bs-btn-active-color: white;
+    --bs-btn-active-bg: #4fc458;
+    --bs-btn-active-border-color: #babbbc;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #000;
+    --bs-btn-disabled-bg: #f8f9fa;
+    --bs-btn-disabled-border-color: #f8f9fa;
+}
+
+
+
+  .btn-light {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-light::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 6px;
+    background-color: #4fc458; /* Adjust color as needed */
+    transition: width 0.3s ease-in-out;
+  }
+
+  .btn-light:hover::before {
+    width: 100%;
+  }
+
+
         body {
             background-color: var(--bg-color);
         }
+
         
         .navbar {
             background-color: var(--primary-color);
@@ -73,6 +129,7 @@
             background-size: cover;
             color: white;
             padding: 100px 0;
+            font-weight: bold;
         }
         
         .stats-number {
@@ -93,7 +150,12 @@
         <div class="container">
             <h1 class="display-4 mb-4">Welcome to Greenfield University</h1>
             <p class="lead mb-4">Shaping Tomorrow's Leaders Through Excellence in Education</p>
-            <a href="#explore" class="btn btn-light btn-lg">Explore Our Campus</a>
+
+            <!-- <img class="gf-logo" src="C:\Users\Launchpad\GF University\imgs" alt="Greenfield University Logo" /> -->
+
+
+            <a href="/sign-in" class="btn btn-light btn-lg">Sign up for Student Portal</a>
+            <a href="/login" class="btn btn-light btn-lg">Login to Student Portal</a>
         </div>
     </section>
 

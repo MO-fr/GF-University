@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - Greenfield University</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gradient-background {
+            background: linear-gradient(135deg, #28a745 0%, #1a5928 100%);
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="gradient-background">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 form-container p-8">
+            <!-- Rest of your form content remains exactly the same -->
+            <!-- Header -->
+            <div class="text-center">
+                <% if (locals.logo) { %>
+                    <img class="mx-auto h-20 w-auto" src="<%= logo %>" alt="Greenfield University">
+                <% } %>
+                <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                    Create Your Student Account
+                </h2>
+                <p class="mt-2 text-sm text-gray-600">
+                    Join Greenfield University's Student Portal
+                </p>
+            </div>
+
+            <!-- Registration Form -->
+            <form class="mt-8 space-y-6" action="/register" method="POST">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                
+                <div class="rounded-md shadow-sm space-y-4">
+                    <!-- Personal Information -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input id="firstName" name="firstName" type="text" required 
+                                class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                                placeholder="John">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input id="lastName" name="lastName" type="text" required 
+                                class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                                placeholder="Doe">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                        <input id="email" name="email" type="email" required 
+                            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                            placeholder="john.doe@example.com">
+                    </div>
+
+                    <!-- Student ID -->
+                    <div>
+                        <label for="studentId" class="block text-sm font-medium text-gray-700">Student ID (if assigned)</label>
+                        <input id="studentId" name="studentId" type="text"
+                            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                            placeholder="e.g., GU2024xxxx">
+                    </div>
+
+                    <!-- Program Selection -->
+                    <div>
+                        <label for="program" class="block text-sm font-medium text-gray-700">Program of Study</label>
+                        <select id="program" name="program" required
+                            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm">
+                            <option value="">Select your program</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="business">Business Administration</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="arts">Liberal Arts</option>
+                        </select>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input id="password" name="password" type="password" required 
+                            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                            placeholder="••••••••">
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <input id="confirmPassword" name="confirmPassword" type="password" required 
+                            class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <% if (locals.error) { %>
+                    <div class="rounded-md bg-red-50 p-4">
+                        <div class="text-sm text-red-700">
+                            <%= error %>
+                        </div>
+                    </div>
+                <% } %>
+
+                <!-- Terms and Conditions -->
+                <div class="flex items-center">
+                    <input id="terms" name="terms" type="checkbox" required
+                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-900">
+                        I agree to the <a href="/terms" class="text-green-600 hover:text-green-500">Terms and Conditions</a>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit" 
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Create Account
+                    </button>
+                </div>
+            </form>
+
+            <!-- Sign In Link -->
+            <div class="text-center text-sm">
+                <span class="text-gray-500">Already have an account? </span>
+                <a href="/login" class="font-medium text-green-600 hover:text-green-500">
+                    Log in here!
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

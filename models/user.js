@@ -4,49 +4,78 @@ import sequelize from '../config/config.js'; // Import the sequelize instance co
 import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
 
 // Define the User model using sequelize
-const User = sequelize.define('User', {
-  // Define the username attribute
-  username: {
-    type: DataTypes.STRING, // Set the data type to STRING
-    allowNull: false, // This field cannot be null
-    unique: false, // This field must be unique across all users
-  },
-  // Define the email attribute
-  email: {
-    type: DataTypes.STRING, // Set the data type to STRING
-    allowNull: false, // This field cannot be null
-    unique: true, // This field must be unique across all users
-    validate: {
-      isEmail: true, // Ensure the email format is valid
+import { DataTypes } from 'sequelize';
+import bcrypt from 'bcrypt'; // For hashing passwords
+import sequelize from './config/config.js'; // Adjust the path to your Sequelize instance
+
+const Student = sequelize.define(
+  'Student',
+  {
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    studentId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+      validate: {
+        len: [6, 20],
+      },
+    },
+    program: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isIn: [['cs', 'business', 'engineering', 'arts']],
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [8, 100], // Enforce password length
+      },
+    },
+    termsAccepted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
-  // Define the password attribute
-  password: {
-    type: DataTypes.STRING, // Set the data type to STRING
-    allowNull: false, // This field cannot be null
-  },
-  // Define the balance attribute
-  balance: {
-    type: DataTypes.FLOAT, // Set the data type to a decimal
-    defaultValue: 0.0, // Set the default value to 0.0
-  },
-});
+  {
+    tableName: 'students', // Table name in the database
+    timestamps: true, // Automatically add createdAt and updatedAt fields
+  }
+);
 
-
-
-// Hook for hashing the password before saving a new user
-User.beforeCreate(async (user) => {
-  // Generate a salt for hashing
-  const salt = await bcrypt.genSalt(10);
-  // Hash the user's password with the generated salt
-  user.password = await bcrypt.hash(user.password, salt);
+// Hook for hashing the password before saving a new student
+Student.beforeCreate(async (student) => {
+  const salt = await bcrypt.genSalt(10); // Generate a salt for hashing
+  student.password = await bcrypt.hash(student.password, salt); // Hash the password with the salt
 });
 
 // Instance method for validating the password
-User.prototype.checkPassword = async function (password) {
-  // Compare the provided password with the hashed password stored in the database
-  return bcrypt.compare(password, this.password);
+Student.prototype.checkPassword = async function (password) {
+  return bcrypt.compare(password, this.password); // Compare provided password with stored hash
 };
 
-// Export the User model for use in other parts of the application
-export default User;
+export default Student;
