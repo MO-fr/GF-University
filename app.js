@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import signInRoutes from './routes/signInRoutes.js';
 import loginRoutes from './routes/loginRoutes.js'
+import termsRoutes from './routes/termsRoutes.js'
 
 // __dirname setup for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -14,6 +15,7 @@ const app = express(); // Initialize Express app
 
 app.use('/', signInRoutes);  // Mount sign-in routes on '/'
 app.use('/', loginRoutes);  // Mount login routes on '/'
+app.use('/', termsRoutes); // Mount terms routes on '/' 
 
 // Middleware setup
 app.use(express.json());

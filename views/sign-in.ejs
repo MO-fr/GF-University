@@ -81,6 +81,45 @@
                             <option value="business">Business Administration</option>
                             <option value="engineering">Engineering</option>
                             <option value="arts">Liberal Arts</option>
+                            <option value="biology">Biology</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="physics">Physics</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="psychology">Psychology</option>
+                            <option value="education">Education</option>
+                            <option value="nursing">Nursing</option>
+                            <option value="accounting">Accounting</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="finance">Finance</option>
+                            <option value="economics">Economics</option>
+                            <option value="sociology">Sociology</option>
+                            <option value="political-science">Political Science</option>
+                            <option value="history">History</option>
+                            <option value="philosophy">Philosophy</option>
+                            <option value="journalism">Journalism</option>
+                            <option value="communications">Communications</option>
+                            <option value="architecture">Architecture</option>
+                            <option value="design">Graphic Design</option>
+                            <option value="film">Film Studies</option>
+                            <option value="music">Music</option>
+                            <option value="theatre">Theatre</option>
+                            <option value="law">Law</option>
+                            <option value="environmental-science">Environmental Science</option>
+                            <option value="public-health">Public Health</option>
+                            <option value="social-work">Social Work</option>
+                            <option value="criminal-justice">Criminal Justice</option>
+                            <option value="information-systems">Information Systems</option>
+                            <option value="software-engineering">Software Engineering</option>
+                            <option value="cybersecurity">Cybersecurity</option>
+                            <option value="data-science">Data Science</option>
+                            <option value="astronomy">Astronomy</option>
+                            <option value="geology">Geology</option>
+                            <option value="anthropology">Anthropology</option>
+                            <option value="linguistics">Linguistics</option>
+                            <option value="special-education">Special Education</option>
+                            <option value="international-relations">International Relations</option>
+                            <option value="hospitality">Hospitality Management</option>
+                            <option value="sports-management">Sports Management</option>
                         </select>
                     </div>
 
@@ -137,5 +176,41 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const email = document.getElementById('email');
+    
+            form.addEventListener('submit', (e) => {
+                let errors = [];
+    
+                // Email validation
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailPattern.test(email.value)) {
+                    errors.push('Please enter a valid email address.');
+                }
+    
+                // Password match validation
+                if (password.value !== confirmPassword.value) {
+                    errors.push('Passwords do not match.');
+                }
+    
+                // Password strength validation
+                const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if (!passwordPattern.test(password.value)) {
+                    errors.push('Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.');
+                }
+    
+                if (errors.length > 0) {
+                    e.preventDefault(); // Prevent form submission
+                    alert(errors.join('\n')); // Display error messages
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
