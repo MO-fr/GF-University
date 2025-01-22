@@ -8,7 +8,6 @@ import loginRoutes from './routes/loginRoutes.js'
 import termsRoutes from './routes/termsRoutes.js'
 import studentDBRoutes from './routes/studentDBRoutes.js'
 import savedUserRoutes from'./routes/savedUserRoutes.js'
-import Student from './models/student.js'
 
 // __dirname setup for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -16,12 +15,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express(); // Initialize Express app
 
-app.use('/', Student);
-app.use('/', savedUserRoutes);
-app.use('/', signInRoutes);  // Mount sign-in routes on '/'
-app.use('/', loginRoutes);  // Mount login routes on '/'
-app.use('/', termsRoutes); // Mount terms routes on '/' 
-app.use('/', studentDBRoutes); // Mount student routes on '/'
+
 
 // Middleware setup
 app.use(express.json());
@@ -37,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Default route (renders your single EJS page)
 app.get('/', (req, res) => {
-  res.render('visitorDB', { title: 'Welcome', message: 'This is your starter EJS page!' });
+  res.render('visitorDB');
 });
 
 
@@ -55,8 +49,16 @@ app.get('/login', (req, res) => {
     });
 
 
+// app.use('/', savedUserRoutes);
+// app.use('/', signInRoutes);  // Mount sign-in routes on '/'
+// app.use('/', loginRoutes);  // Mount login routes on '/'
+// app.use('/', termsRoutes); // Mount terms routes on '/' 
+// app.use('/', studentDBRoutes); // Mount student routes on '/'
+
+
 // Database and server initialization
 const startServer = async () => {
+
   try {
     // Authenticate the database connection
     await sequelize.authenticate();
@@ -71,6 +73,7 @@ const startServer = async () => {
     app.listen(PORT, () => {
       console.log(`Server is running at http://localhost:${PORT}`);
     });
+
   } catch (error) {
     console.error('Error starting the server:', error);
     process.exit(1);
