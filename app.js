@@ -7,6 +7,8 @@ import signInRoutes from './routes/signInRoutes.js';
 import loginRoutes from './routes/loginRoutes.js'
 import termsRoutes from './routes/termsRoutes.js'
 import studentDBRoutes from './routes/studentDBRoutes.js'
+import savedUserRoutes from'./routes/savedUserRoutes.js'
+import Student from './models/student.js'
 
 // __dirname setup for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -14,6 +16,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express(); // Initialize Express app
 
+app.use('/', Student);
+app.use('/', savedUserRoutes);
 app.use('/', signInRoutes);  // Mount sign-in routes on '/'
 app.use('/', loginRoutes);  // Mount login routes on '/'
 app.use('/', termsRoutes); // Mount terms routes on '/' 

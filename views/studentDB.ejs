@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Green University - Student Portal</title>
+    <style>
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            font-size: 0.75rem;
+        }
+        .menu-card:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s;
+        }
+        .progress {
+            height: 8px;
+        }
+    </style>
+</head>
+<body class="min-vh-100 bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#">Green University</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Academics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Financial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Campus Life</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        
+                    </div>
+                    <div class="dropdown">
+                        <img src="/api/placeholder/40/40" alt="Profile" class="rounded-circle cursor-pointer" width="40" height="40" data-bs-toggle="dropdown">
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <!-- Welcome Banner -->
+        <div class="card bg-success text-white shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-1">Welcome back, John Doe!</h4>
+                        <p class="mb-0">Freshmen Year - Computer Science</p>
+                    </div>
+                    <div class="text-end">
+                        <p class="mb-1">Spring 2025</p>
+                        <p class="mb-0">Week 3 of 15</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Quick Stats Grid -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted">Current GPA</h6>
+                        <p class="display-6 mb-0">3.75</p>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-success" style="width: 94%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted">Credits Completed</h6>
+                        <p class="display-6 mb-0">64</p>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-success" style="width: 53%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted">Current Classes</h6>
+                        <p class="display-6 mb-0">4</p>
+                        <small class="text-muted">12 Credits Total</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="text-muted">Meal Plan Balance</h6>
+                        <p class="display-6 mb-0">$450</p>
+                        <small class="text-muted">Expires May 15, 2025</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Courses -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white">
+                <h5 class="card-title mb-0">Current Courses</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">CS301 - Advanced Data Structures</h6>
+                            <small class="text-success">Grade: A-</small>
+                        </div>
+                        <p class="mb-1">Prof. Smith - MWF 10:00 AM</p>
+                        <small class="text-muted">2 assignments due this week</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">MATH245 - Linear Algebra</h6>
+                            <small class="text-success">Grade: B+</small>
+                        </div>
+                        <p class="mb-1">Prof. Johnson - TTH 2:00 PM</p>
+                        <small class="text-muted">Midterm exam next week</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">PHYS201 - Physics II</h6>
+                            <small class="text-warning">Grade: C</small>
+                        </div>
+                        <p class="mb-1">Prof. Zhang - MWF 1:00 PM</p>
+                        <small class="text-muted">Lab report due Friday</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">ENG202 - Technical Writing</h6>
+                            <small class="text-success">Grade: A</small>
+                        </div>
+                        <p class="mb-1">Prof. Davis - TTH 11:00 AM</p>
+                        <small class="text-muted">Research paper draft due in 2 weeks</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Column Layout for Additional Info -->
+        <div class="row g-4">
+            <!-- Left Column -->
+            <div class="col-lg-8">
+                <!-- Financial Summary -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Financial Summary</h5>
+                        <button class="btn btn-sm btn-outline-success">Make Payment</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Spring 2025 Tuition</span>
+                                <span>$12,500</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Financial Aid</span>
+                                <span class="text-success">-$7,000</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Payment Made</span>
+                                <span class="text-success">-$1,000</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Balance Due</span>
+                                <span class="text-danger">$4,500</span>
+                            </div>
+                        </div>
+                        <small class="text-muted">Next payment due: February 1, 2025</small>
+                    </div>
+                </div>
+
+                <!-- Academic Calendar -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">Upcoming Academic Dates</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Course Registration Deadline</h6>
+                                    <small class="text-muted">Spring 2025</small>
+                                </div>
+                                <span class="badge bg-warning text-dark">Jan 24, 2025</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Midterm Exams Begin</h6>
+                                    <small class="text-muted">All Courses</small>
+                                </div>
+                                <span class="badge bg-info">Feb 15, 2025</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Spring Break</h6>
+                                    <small class="text-muted">No Classes</small>
+                                </div>
+                                <span class="badge bg-success">Mar 10-17, 2025</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-lg-4">
+                <!-- Campus Services -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">Campus Services</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <i class="fas fa-book-reader me-2 text-success"></i>Library Resources
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <i class="fas fa-laptop-code me-2 text-success"></i>IT Help Desk
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <i class="fas fa-users me-2 text-success"></i>Student Organizations
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <i class="fas fa-dumbbell me-2 text-success"></i>Recreation Center
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <i class="fas fa-bus me-2 text-success"></i>Campus Transit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Resources -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">Academic Resources</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fas fa-calendar-check me-2"></i>Schedule Advising
+                            </a>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>Tutoring Services
+                            </a>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fas fa-file-alt me-2"></i>Writing Center
+                            </a>
+                            <a href="#" class="btn btn-outline-success">
+                                <i class="fas fa-briefcase me-2"></i>Career Services
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+
+                        [Previous HTML content remains the same until the Quick Links card header...]
+
+                    <div class="card-header bg-white">
+                        <h5 class="card-title mb-0">Quick Links</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                Campus Email
+                                <i class="fas fa-envelope text-success"></i>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                Course Catalog
+                                <i class="fas fa-book text-success"></i>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                Student Handbook
+                                <i class="fas fa-file-alt text-success"></i>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                Campus Map
+                                <i class="fas fa-map-marker-alt text-success"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-success text-white py-3 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Green University. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
