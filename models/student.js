@@ -3,7 +3,6 @@ import { DataTypes } from 'sequelize'; // Import DataTypes from sequelize for de
 import sequelize from '../config/config.js'; // Import the sequelize instance configured for the database
 import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
 
-
 const Student = sequelize.define(
   'student',
   {
@@ -22,7 +21,7 @@ const Student = sequelize.define(
       },
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       allowNull: false,
       unique: true,
       validate: {
@@ -30,7 +29,7 @@ const Student = sequelize.define(
       },
     },
     studentId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: true,
       unique: true,
       validate: {

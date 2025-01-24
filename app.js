@@ -7,7 +7,8 @@ import signInRoutes from './routes/signInRoutes.js';
 import loginRoutes from './routes/loginRoutes.js'
 import termsRoutes from './routes/termsRoutes.js'
 import studentDBRoutes from './routes/studentDBRoutes.js'
-import savedUserRoutes from'./routes/savedUserRoutes.js'
+import savedUserRoutes from './routes/savedUserRoutes.js' // Import the Student model
+
 
 // __dirname setup for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -21,7 +22,6 @@ const app = express(); // Initialize Express app
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); // Middleware for handling cookies
-
 // EJS setup
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -48,13 +48,12 @@ app.get('/login', (req, res) => {
     res.render('studentDB'); // Render the 'login.ejs' page
     });
 
-
-// app.use('/', savedUserRoutes);
-// app.use('/', signInRoutes);  // Mount sign-in routes on '/'
-// app.use('/', loginRoutes);  // Mount login routes on '/'
-// app.use('/', termsRoutes); // Mount terms routes on '/' 
-// app.use('/', studentDBRoutes); // Mount student routes on '/'
-
+app.use('/', savedUserRoutes);   
+app.use('/', studentDBRoutes);  // Mount sign-in routes on '/'
+app.use('/', loginRoutes);  // Mount login routes on '/'
+app.use('/', termsRoutes); // Mount terms routes on '/' 
+app.use('/', studentDBRoutes); // Mount student routes on '/'
+app.use('/', signInRoutes); // Mount terms routes on '/
 
 // Database and server initialization
 const startServer = async () => {

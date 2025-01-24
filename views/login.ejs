@@ -93,9 +93,14 @@
             <!-- Sign Up Link -->
             <div class="text-center text-sm">
                 <span class="text-gray-500">New to Greenfield University? </span>
-                <a href="/sign-in" class="font-medium text-green-600 hover:text-green-500">
-                    Create an account
-                </a>
+                <form action="/studentDB" method="GET" style="display: inline;">
+                    <button 
+                      type="submit" 
+                      class="font-medium text-green-600 hover:text-green-500 bg-transparent border-none cursor-pointer">
+                      Create an account
+                    </button>
+                  </form>
+                  
             </div>
         </div>
     </div>

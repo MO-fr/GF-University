@@ -1,1 +1,28 @@
-{"name":"gf-university","version":"1.0.0","main":"app.js","type":"module","scripts":{"start":"nodemon app.js","start:dev":"nodemon app.js","test":"echo \"Error: no test specified\" && exit 1"},"author":"mo","license":"ISC","dependencies":{"bcrypt":"^5.1.1","cookie-parser":"^1.4.7","dotenv":"^16.4.7","ejs":"^3.1.10","express":"^4.21.2","mysql2":"^3.12.0","nodemon":"^3.1.9","sequelize":"^6.37.5"},"keywords":[],"description":""}
+{
+    "name": "gf-university",
+    "version": "1.0.0",
+    "description": "A university management application.",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+      "start": "node app.js",
+      "start:dev": "nodemon app.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["university", "management", "express", "sequelize"],
+    "author": "Mo",
+    "license": "ISC",
+    "dependencies": {
+      "bcrypt": "^5.1.1",
+      "cookie-parser": "^1.4.7",
+      "dotenv": "^16.4.7",
+      "ejs": "^3.1.10",
+      "express": "^4.21.2",
+      "mysql2": "^3.12.0",
+      "sequelize": "^6.37.5"
+    },
+    "devDependencies": {
+      "nodemon": "^3.1.9"
+    }
+  }
+  
