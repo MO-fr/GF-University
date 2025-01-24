@@ -14,7 +14,12 @@
             backdrop-filter: blur(5px);
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            right: -30px;
         }
+
+        
+    
     </style>
 </head>
 <body class="gradient-background">
@@ -33,7 +38,9 @@
                     Join Greenfield University's Student Portal
                 </p>
             </div>
-             
+            
+            <!-- <img class="gf-logo" src="/imgs/gf-logo.png" alt="Greenfield University Logo" /> -->
+
             <!-- Qqwweerrtt3311$ -->
             <!-- Registration Form -->
             <form action="/studentDB" class="mt-8 space-y-6" method="POST">
@@ -129,7 +136,7 @@
                         <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                         <input id="password" name="password" type="password" required 
                             class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
-                            placeholder="••••••••">
+                            placeholder="">
                     </div>
 
                     <!-- Confirm Password -->
@@ -137,7 +144,7 @@
                         <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
                         <input id="confirmPassword" name="confirmPassword" type="password" required 
                             class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
-                            placeholder="••••••••">
+                            placeholder="">
                     </div>
                 </div>
 

@@ -44,8 +44,8 @@ app.get('/login', (req, res) => {
   res.render('login'); // Render the 'login.ejs' page
   });
 
-  app.post('/studentDB', (req, res) => {
-    const { firstName, lastName, email, studentID, password, program } = req.body;
+ app.post('/studentDB', async (req, res) => {
+    const { firstName, lastName, email, studentId, program, password, termsAccepted } = req.body;
     // Save student data to the database or perform other logic
     res.render('studentDB'); // Render the 'login.ejs' page
     });
