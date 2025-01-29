@@ -3,11 +3,8 @@ import cookieParser from 'cookie-parser';
 import sequelize from './config/config.js'; // Import Sequelize instance
 import path from 'path';
 import { fileURLToPath } from 'url';
-import signInRoutes from './routes/signInRoutes.js';
-import loginRoutes from './routes/loginRoutes.js'
-import termsRoutes from './routes/termsRoutes.js'
-import studentDBRoutes from './routes/studentDBRoutes.js'
-import savedUserRoutes from './routes/savedUserRoutes.js' // Import the Student model
+import primeRoute from './routes/primeRoute.js'
+
 
 
 // __dirname setup for ES Modules
@@ -29,33 +26,15 @@ app.set('views', path.join(__dirname, 'views'));
 // Static file setup (for CSS, JS, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Default route (renders your single EJS page)
+
+app.use('/', primeRoute);   
+
 app.get('/', (req, res) => {
   res.render('visitorDB');
 });
 
 
-// Route for the sign-in page
-app.get('/sign-in', (req, res) => {
-  res.render('sign-in'); // Render the 'sign-in.ejs' page
-});
 
-app.get('/login', (req, res) => {
-  res.render('login'); // Render the 'login.ejs' page
-  });
-
- app.post('/studentDB', async (req, res) => {
-    const { firstName, lastName, email, studentId, program, password, termsAccepted } = req.body;
-    // Save student data to the database or perform other logic
-    res.render('studentDB'); // Render the 'login.ejs' page
-    });
-
-app.use('/', savedUserRoutes);   
-app.use('/', studentDBRoutes);  // Mount sign-in routes on '/'
-app.use('/', loginRoutes);  // Mount login routes on '/'
-app.use('/', termsRoutes); // Mount terms routes on '/' 
-app.use('/', studentDBRoutes); // Mount student routes on '/'
-app.use('/', signInRoutes); // Mount terms routes on '/
 
 // Database and server initialization
 const startServer = async () => {

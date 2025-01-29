@@ -5,24 +5,29 @@
     "main": "app.js",
     "type": "module",
     "scripts": {
-      "start": "node app.js",
-      "start:dev": "nodemon app.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node app.js",
+        "start:dev": "nodemon app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": ["university", "management", "express", "sequelize"],
+    "keywords": [
+        "university",
+        "management",
+        "express",
+        "sequelize"
+    ],
     "author": "Mo",
     "license": "ISC",
     "dependencies": {
-      "bcrypt": "^5.1.1",
-      "cookie-parser": "^1.4.7",
-      "dotenv": "^16.4.7",
-      "ejs": "^3.1.10",
-      "express": "^4.21.2",
-      "mysql2": "^3.12.0",
-      "sequelize": "^6.37.5"
+        "bcrypt": "^5.1.1",
+        "cookie-parser": "^1.4.7",
+        "dotenv": "^16.4.7",
+        "ejs": "^3.1.10",
+        "express": "^4.21.2",
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.12.0",
+        "sequelize": "^6.37.5"
     },
     "devDependencies": {
-      "nodemon": "^3.1.9"
+        "nodemon": "^3.1.9"
     }
-  }
-  
+}
