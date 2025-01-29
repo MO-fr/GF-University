@@ -12,7 +12,7 @@ router.get('/studentDB', (req, res) => res.render('studentDB'));
 router.get('/terms', (req, res) => res.render('terms')); // Fixed incorrect render
 
 router.post('/studentDB', (req, res) => {
-  res.render('/studentDB');
+  res.render('studentDB');
 });
 
 // Sign-up route
@@ -52,7 +52,13 @@ router.post('/sign-in', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user in the database
-    await Student.create({ firstName, lastName, email, studentId, program, password: hashedPassword });
+    await Student.create({ 
+      firstName: firstName, 
+      lastName: lastName, 
+      email: email, 
+      studentId: studentId, 
+      program: program, 
+      password: hashedPassword });
 
     // Redirect to the studentDB page
     res.redirect('/studentDB'); 

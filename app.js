@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
   res.render('visitorDB');
 });
 
+app.get('/studentDB', (req, res) => {
+  res.render('studentDB'); // Or whatever your view is called
+});
 
 
 

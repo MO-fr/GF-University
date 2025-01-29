@@ -30,7 +30,7 @@ const Student = sequelize.define(
     },
     studentId: {
       type: DataTypes.STRING(20),
-      allowNull: true,
+      allowNull: false,
       unique: true,
       validate: {
         len: [6, 20],
