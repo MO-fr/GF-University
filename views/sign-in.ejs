@@ -189,40 +189,7 @@
         </div>
     </div>
 
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form');
-            const password = document.getElementById('password');
-            const confirmPassword = document.getElementById('confirmPassword');
-            const email = document.getElementById('email');
-    
-            form.addEventListener('submit', (e) => {
-                let errors = [];
-    
-                // Email validation
-                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                if (!emailPattern.test(email.value)) {
-                    errors.push('Please enter a valid email address.');
-                }
-    
-                // Password match validation
-                if (password.value !== confirmPassword.value) {
-                    errors.push('Passwords do not match.');
-                }
-    
-                // Password strength validation
-                const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-                if (!passwordPattern.test(password.value)) {
-                    errors.push('Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, one number, and one special character.');
-                }
-    
-                if (errors.length > 0) {
-                    e.preventDefault(); // Prevent form submission
-                    alert(errors.join('\n')); // Display error messages
-                }
-            });
-        });
-    </script> -->
+
     
 </body>
 </html>

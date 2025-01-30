@@ -15,6 +15,7 @@ router.post('/studentDB', (req, res) => {
   res.render('studentDB');
 });
 
+
 // Sign-up route
 router.post('/sign-in', async (req, res) => {
   const { firstName, lastName, email, studentId, program, password, confirmPassword, terms } = req.body;
@@ -52,15 +53,17 @@ router.post('/sign-in', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create the user in the database
-    await Student.create({ 
+    const newUser = await Student.create({ 
       firstName: firstName, 
       lastName: lastName, 
       email: email, 
-      studentId: studentId, 
-      program: program, 
-      password: hashedPassword });
+      studentId: studentId,  
+      program: program,  
+      password: hashedPassword 
+    });
 
-    // Redirect to the studentDB page
+
+    // Redirect to dashboard
     res.redirect('/studentDB'); 
   } catch (error) {
     console.error('Error during signup:', error);
@@ -69,21 +72,31 @@ router.post('/sign-in', async (req, res) => {
 });
 
 
+
 // Login route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    if (!email || !password) return res.status(400).send('All fields are required.');
+    if (!email || !password) {
+      return res.status(400).send('All fields are required.');
+    }
 
-    const user = await Student.findOne({ where: { email } });
-    if (!user) return res.status(404).send('User not found.');
+    // Find the student by email
+    const student = await Student.findOne({ where: { email } });
 
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) return res.status(400).send('Invalid credentials.');
+    if (!student) {
+      return res.status(404).send('Student not found.');
+    }
+
+    // Compare the provided password with the stored hash
+    const isValid = await bcrypt.compare(password, student.password);
+    if (!isValid) {
+      return res.status(400).send('Invalid credentials.');
+    }
 
     // Generate a JWT token
-    const token = jwt.sign({ userId: user.id, email: user.email }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: student.id, email: student.email }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
     // Send token in a cookie
     res.cookie('auth_token', token, {
@@ -92,11 +105,13 @@ router.post('/login', async (req, res) => {
       maxAge: 3600000, // 1 hour
     });
 
+    // Redirect to student dashboard
     res.redirect('/studentDB');
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).send('Internal server error.');
   }
 });
+
 
 export default router;
