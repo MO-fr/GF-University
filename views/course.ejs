@@ -1,4 +1,5 @@
 <!-- views/courses.ejs -->
+<!-- views/courses.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Selection - Greenfield University</title>
     <link rel="stylesheet" href="/css/course.css">
-    <script src="/js/course1.js"></script>
+    <script src="/js/course1.js" defer></script>
 </head>
 <body>
     <div class="header">
@@ -15,7 +16,6 @@
         <img class="gf-logo" src="/imgs/gf-logo.png" alt="Greenfield University Logo" />
     </div>
         
-
     <div class="container">
         <div class="search-box">
             <input type="text" 
@@ -23,35 +23,34 @@
                    placeholder="Search courses by name, code, or department..." 
                    onkeyup="searchCourses(this.value)">
         </div>
-
+    
         <div class="course-list" id="courseList">
             <% const courses = [
-            { id: 1, code: 'CS101', name: 'Introduction to Computer Science', credits: 3, department: 'Computer Science', description: 'Fundamental concepts of programming' },
-            { id: 2, code: 'CS201', name: 'Data Structures', credits: 4, department: 'Computer Science', description: 'Advanced data organization' },
-            { id: 3, code: 'MATH101', name: 'Calculus I', credits: 4, department: 'Mathematics', description: 'Limits, derivatives, and integrals' },
-            { id: 4, code: 'ENG101', name: 'English Composition', credits: 3, department: 'English', description: 'Writing and rhetoric' },
-            { id: 5, code: 'HIST101', name: 'World History', credits: 3, department: 'History', description: 'Global historical developments' },
-            { id: 6, code: 'BIO101', name: 'Biology I', credits: 4, department: 'Biology', description: 'Introduction to living systems' },
-            { id: 7, code: 'CHEM101', name: 'General Chemistry', credits: 4, department: 'Chemistry', description: 'Basic chemical principles' },
-            { id: 8, code: 'PHYS101', name: 'Physics I', credits: 4, department: 'Physics', description: 'Mechanics and dynamics' },
-            { id: 9, code: 'PSY101', name: 'Introduction to Psychology', credits: 3, department: 'Psychology', description: 'Human behavior and mental processes' },
-            { id: 10, code: 'SOC101', name: 'Introduction to Sociology', credits: 3, department: 'Sociology', description: 'Social structures and interactions' },
-            { id: 11, code: 'ART101', name: 'Art History', credits: 3, department: 'Art', description: 'Survey of world art' },
-            { id: 12, code: 'MUS101', name: 'Music Appreciation', credits: 3, department: 'Music', description: 'Understanding musical elements' },
-            { id: 13, code: 'CS301', name: 'Operating Systems', credits: 4, department: 'Computer Science', description: 'Theory and practice of operating systems' },
-            { id: 14, code: 'CS401', name: 'Algorithms', credits: 4, department: 'Computer Science', description: 'Design and analysis of algorithms' },
-            { id: 15, code: 'MATH201', name: 'Linear Algebra', credits: 4, department: 'Mathematics', description: 'Matrices, vectors, and transformations' },
-            { id: 16, code: 'PHIL101', name: 'Introduction to Philosophy', credits: 3, department: 'Philosophy', description: 'Fundamental philosophical questions' },
-            { id: 17, code: 'LIT101', name: 'Literature of the Western World', credits: 3, department: 'English', description: 'Study of classic literature' },
-            { id: 18, code: 'ANTH101', name: 'Cultural Anthropology', credits: 3, department: 'Anthropology', description: 'Human societies and cultures' },
-            { id: 19, code: 'ECO101', name: 'Principles of Economics', credits: 3, department: 'Economics', description: 'Basic concepts of micro and macroeconomics' },
-            { id: 20, code: 'BUS101', name: 'Introduction to Business', credits: 3, department: 'Business', description: 'Overview of business principles' },
-            { id: 21, code: 'NURS101', name: 'Introduction to Nursing', credits: 4, department: 'Nursing', description: 'Foundational nursing concepts and skills' },
-            { id: 22, code: 'EDU101', name: 'Introduction to Education', credits: 3, department: 'Education', description: 'Theory and practice of education' },
-            { id: 23, code: 'LAW101', name: 'Introduction to Law', credits: 3, department: 'Law', description: 'Basic legal principles and systems' },
-            { id: 24, code: 'CHEM201', name: 'Organic Chemistry', credits: 4, department: 'Chemistry', description: 'Study of organic compounds and reactions' }
+          { id: 1, code: 'CS101', name: 'Introduction to Computer Science', credits: 3, department: 'Computer Science', description: 'Fundamental concepts of programming' },
+        { id: 2, code: 'CS201', name: 'Data Structures', credits: 4, department: 'Computer Science', description: 'Advanced data organization' },
+        { id: 3, code: 'MATH101', name: 'Calculus I', credits: 4, department: 'Mathematics', description: 'Limits, derivatives, and integrals' },
+        { id: 4, code: 'ENG101', name: 'English Composition', credits: 3, department: 'English', description: 'Writing and rhetoric' },
+        { id: 5, code: 'HIST101', name: 'World History', credits: 3, department: 'History', description: 'Global historical developments' },
+        { id: 6, code: 'BIO101', name: 'Biology I', credits: 4, department: 'Biology', description: 'Introduction to living systems' },
+        { id: 7, code: 'CHEM101', name: 'General Chemistry', credits: 4, department: 'Chemistry', description: 'Basic chemical principles' },
+        { id: 8, code: 'PHYS101', name: 'Physics I', credits: 4, department: 'Physics', description: 'Mechanics and dynamics' },
+        { id: 9, code: 'PSY101', name: 'Introduction to Psychology', credits: 3, department: 'Psychology', description: 'Human behavior and mental processes' },
+        { id: 10, code: 'SOC101', name: 'Introduction to Sociology', credits: 3, department: 'Sociology', description: 'Social structures and interactions' },
+        { id: 11, code: 'ART101', name: 'Art History', credits: 3, department: 'Art', description: 'Survey of world art' },
+        { id: 12, code: 'MUS101', name: 'Music Appreciation', credits: 3, department: 'Music', description: 'Understanding musical elements' },
+        { id: 13, code: 'CS301', name: 'Operating Systems', credits: 4, department: 'Computer Science', description: 'Theory and practice of operating systems' },
+        { id: 14, code: 'CS401', name: 'Algorithms', credits: 4, department: 'Computer Science', description: 'Design and analysis of algorithms' },
+        { id: 15, code: 'MATH201', name: 'Linear Algebra', credits: 4, department: 'Mathematics', description: 'Matrices, vectors, and transformations' },
+        { id: 16, code: 'PHIL101', name: 'Introduction to Philosophy', credits: 3, department: 'Philosophy', description: 'Fundamental philosophical questions' },
+        { id: 17, code: 'LIT101', name: 'Literature of the Western World', credits: 3, department: 'English', description: 'Study of classic literature' },
+        { id: 18, code: 'ANTH101', name: 'Cultural Anthropology', credits: 3, department: 'Anthropology', description: 'Human societies and cultures' },
+        { id: 19, code: 'ECO101', name: 'Principles of Economics', credits: 3, department: 'Economics', description: 'Basic concepts of micro and macroeconomics' },
+        { id: 20, code: 'BUS101', name: 'Introduction to Business', credits: 3, department: 'Business', description: 'Overview of business principles' },
+        { id: 21, code: 'NURS101', name: 'Introduction to Nursing', credits: 4, department: 'Nursing', description: 'Foundational nursing concepts and skills' },
+        { id: 22, code: 'EDU101', name: 'Introduction to Education', credits: 3, department: 'Education', description: 'Theory and practice of education' },
+        { id: 23, code: 'LAW101', name: 'Introduction to Law', credits: 3, department: 'Law', description: 'Basic legal principles and systems' },
+        { id: 24, code: 'CHEM201', name: 'Organic Chemistry', credits: 4, department: 'Chemistry', description: 'Study of organic compounds and reactions' }
         ]; %>
-        
 
             <% courses.forEach(course => { %>
                 <div class="course-item" 
@@ -77,6 +76,60 @@
         </form>
     </div>
 
+    <script>
+        let selectedCourses = new Set(); 
 
+        function toggleCourseSelection(courseElement) {
+            const courseId = courseElement.getAttribute("data-course-id");
+
+            if (selectedCourses.has(courseId)) {
+                selectedCourses.delete(courseId);
+                courseElement.classList.remove("selected");
+            } else {
+                selectedCourses.add(courseId);
+                courseElement.classList.add("selected");
+            }
+
+            document.getElementById("selectedCourses").value = Array.from(selectedCourses).join(",");
+
+            const assignButton = document.getElementById("assignButton");
+            assignButton.style.display = selectedCourses.size > 0 ? "block" : "none";
+        }
+
+        function searchCourses(query) {
+            query = query.toLowerCase();
+            const courses = document.querySelectorAll('.course-item');
+
+            courses.forEach(course => {
+                const courseInfo = course.getAttribute('data-course-info');
+                course.style.display = courseInfo.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById("assignForm").addEventListener("submit", function (event) {
+            event.preventDefault(); 
+
+            const courseCount = selectedCourses.size;
+            
+            if (courseCount > 0) {
+                alert(courseCount === 1 ? "Course assigned!" : "Courses assigned!");
+                
+                selectedCourses.clear();
+                document.querySelectorAll('.course-item.selected').forEach(course => {
+                    course.classList.remove("selected");
+                });
+
+                document.getElementById("assignButton").style.display = "none";
+                document.getElementById("selectedCourses").value = "";
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("assignButton").style.display = "none";
+        });
+    </script>
 </body>
 </html>
+
+
+

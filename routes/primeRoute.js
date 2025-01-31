@@ -11,8 +11,11 @@ const router = express.Router();
 router.get('/sign-in', (req, res) => res.render('sign-in'));
 router.get('/login', (req, res) => res.render('login'));
 router.get('/studentDB', (req, res) => res.render('studentDB'));
-router.get('/terms', (req, res) => res.render('terms')); // Fixed incorrect render
+router.get('/terms', (req, res) => res.render('terms')); 
 router.get('/course', (req, res) => res.render('course'))
+router.get('/calendar', (req, res)  => res.render('calendar'))
+router.get('/visitCalendar', (req, res)  => res.render('visitCalendar'))
+
 
 router.post('/studentDB', (req, res) => {
   res.render('studentDB');

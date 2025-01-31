@@ -1,0 +1,19 @@
+body {
+    background-color: #e6f3e6;
+}
+.calendar-day {
+    transition: all 0.3s ease;
+    border: 1px solid #2ecc71;
+}
+.calendar-day:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: #d4efdf;
+}
+.event-marker {
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
