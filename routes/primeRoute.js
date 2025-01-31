@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken';
 import Student from '../models/student.js'; // Ensure this is the correct model
 import course from '../models/course.js'; // Ensure this is thert cou from '../models/user.js'; // Ensure this is the
 
-
 const router = express.Router();
 
 // Render pages
@@ -15,7 +14,6 @@ router.get('/terms', (req, res) => res.render('terms'));
 router.get('/course', (req, res) => res.render('course'))
 router.get('/calendar', (req, res)  => res.render('calendar'))
 router.get('/visitCalendar', (req, res)  => res.render('visitCalendar'))
-
 
 router.post('/studentDB', (req, res) => {
   res.render('studentDB');

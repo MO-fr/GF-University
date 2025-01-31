@@ -65,21 +65,42 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderEventList() {
         const upcomingEvents = events
             .sort((a, b) => new Date(a.date) - new Date(b.date))
-            .slice(0, 5);
+            .slice(0, 5);  // Show only the first 5 upcoming events
 
         eventList.innerHTML = `
             <h3 class="text-xl font-semibold mb-4 text-gray-800">Upcoming Events</h3>
             ${upcomingEvents.length ? 
                 upcomingEvents.map(event => `
-                    <div class="border-b py-2">
-                        <strong>${event.title}</strong>
-                        <p>${event.date} - ${event.type}</p>
-                        <p>${event.description || ''}</p>
+                    <div class="event-item border-b py-2 flex justify-between items-center">
+                        <div>
+                            <strong>${event.title}</strong>
+                            <p>${event.date} - ${event.type}</p>
+                            <p>${event.description || ''}</p>
+                        </div>
+                        <button 
+                            class="delete-event text-red-600 hover:text-red-800" 
+                            data-id="${event.id}">
+                            Delete
+                        </button>
                     </div>
                 `).join('') : 
                 '<p>No upcoming events</p>'
             }
         `;
+
+        // Add event listener to delete buttons
+        document.querySelectorAll('.delete-event').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const eventId = e.target.dataset.id;
+                deleteEvent(eventId);
+            });
+        });
+    }
+
+    function deleteEvent(eventId) {
+        events = events.filter(event => event.id !== parseInt(eventId));
+        saveEvents();
+        renderCalendar(currentDate); // Re-render to update the calendar and event list
     }
 
     prevMonthBtn.addEventListener('click', () => {
