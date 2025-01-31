@@ -1,0 +1,9 @@
+.gradient-background {
+    background: linear-gradient(135deg, #28a745 0%, #1a5928 100%);
+}
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}

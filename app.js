@@ -7,8 +7,6 @@ import primeRoute from './routes/primeRoute.js'
 
 
 
-
-
 // __dirname setup for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

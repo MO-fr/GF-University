@@ -1,7 +1,6 @@
 // Import necessary modules
 import { DataTypes } from 'sequelize'; // Import DataTypes from sequelize for defining model attributes
 import sequelize from '../config/config.js'; // Import the sequelize instance configured for the database
-import bcrypt from 'bcrypt'; // Import bcrypt for password hashing
 
 const Student = sequelize.define(
   'student',
@@ -103,19 +102,9 @@ const Student = sequelize.define(
   },
   {
     tableName: 'students', // Table name in the database
-    timestamps: true, // Automatically add createdAt and updatedAt fields
+    timestamps: false, // Automatically add createdAt and updatedAt fields
   }
 );
 
-// Hook for hashing the password before saving a new student
-Student.beforeCreate(async (student) => {
-  const salt = await bcrypt.genSalt(10); // Generate a salt for hashing
-  student.password = await bcrypt.hash(student.password, salt); // Hash the password with the salt
-});
-
-// Instance method for validating the password
-Student.prototype.checkPassword = async function (password) {
-  return bcrypt.compare(password, this.password); // Compare provided password with stored hash
-};
 
 export default Student;

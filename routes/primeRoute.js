@@ -2,6 +2,8 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import Student from '../models/student.js'; // Ensure this is the correct model
+import course from '../models/course.js'; // Ensure this is thert cou from '../models/user.js'; // Ensure this is the
+
 
 const router = express.Router();
 
@@ -10,6 +12,7 @@ router.get('/sign-in', (req, res) => res.render('sign-in'));
 router.get('/login', (req, res) => res.render('login'));
 router.get('/studentDB', (req, res) => res.render('studentDB'));
 router.get('/terms', (req, res) => res.render('terms')); // Fixed incorrect render
+router.get('/course', (req, res) => res.render('course'))
 
 router.post('/studentDB', (req, res) => {
   res.render('studentDB');
@@ -35,7 +38,7 @@ router.post('/sign-in', async (req, res) => {
     if (password.length < 8) {
       return res.status(400).send('Password must be at least 8 characters long.');
     }
-
+                                      
     // Ensure the user accepted the terms
     if (!terms) {
       return res.status(400).send('You must accept the terms and conditions.');
