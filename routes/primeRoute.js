@@ -1,31 +1,31 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import Student from '../models/student.js'; // Ensure this is the correct model
-import course from '../models/course.js'; // Ensure this is thert cou from '../models/user.js'; // Ensure this is the
+import bcrypt from 'bcrypt'; // Library to securely hash passwords
+import jwt from 'jsonwebtoken'; // Library to create secure login tokens
+import Student from '../models/student.js'; // Import the Student model
 
-const router = express.Router();
+const router = express.Router(); // Create a router to handle different web requests
 
-// Render pages
-router.get('/sign-in', (req, res) => res.render('sign-in'));
-router.get('/login', (req, res) => res.render('login'));
-router.get('/studentDB', (req, res) => res.render('studentDB'));
-router.get('/terms', (req, res) => res.render('terms')); 
-router.get('/course', (req, res) => res.render('course'))
-router.get('/calendar', (req, res)  => res.render('calendar'))
-router.get('/visitCalendar', (req, res)  => res.render('visitCalendar'))
+// Routes to render pages (these show web pages when users visit these links)
+router.get('/sign-in', (req, res) => res.render('sign-in')); // Show the sign-up page
+router.get('/login', (req, res) => res.render('login')); // Show the login page
+router.get('/studentDB', (req, res) => res.render('studentDB')); // Show the student dashboard
+router.get('/terms', (req, res) => res.render('terms')); // Show the terms and conditions page
+router.get('/course', (req, res) => res.render('course')); // Show the course registration page
+router.get('/calendar', (req, res) => res.render('calendar')); // Show the event calendar
+router.get('/visitCalendar', (req, res) => res.render('visitCalendar')); // Show a calendar for visitors
 
+// Another route to show the student dashboard (this is for form submissions)
 router.post('/studentDB', (req, res) => {
   res.render('studentDB');
 });
 
-
-// Sign-up route
+// Sign-up route (when a new student registers)
 router.post('/sign-in', async (req, res) => {
+  // Get data from the form
   const { firstName, lastName, email, studentId, program, password, confirmPassword, terms } = req.body;
 
   try {
-    // Check if all fields are provided
+    // Make sure all required fields are filled out
     if (!firstName || !lastName || !email || !studentId || !program || !password || !confirmPassword || terms === undefined) {
       return res.status(400).send('All fields are required.');
     }
@@ -35,28 +35,28 @@ router.post('/sign-in', async (req, res) => {
       return res.status(400).send('Passwords do not match.');
     }
 
-    // Validate password length
+    // Password must be at least 8 characters long
     if (password.length < 8) {
       return res.status(400).send('Password must be at least 8 characters long.');
     }
                                       
-    // Ensure the user accepted the terms
+    // Make sure the user agreed to the terms and conditions
     if (!terms) {
       return res.status(400).send('You must accept the terms and conditions.');
     }
 
-    // Check if email is already registered
+    // Check if the email is already in use
     const existingUser = await Student.findOne({ where: { email } });
     if (existingUser) return res.status(400).send('Email is already registered.');
 
-    // Check if student ID is already registered
+    // Check if the student ID is already taken
     const existingStudentId = await Student.findOne({ where: { studentId } });
     if (existingStudentId) return res.status(400).send('Student ID is already registered.');
 
-    // Hash the password before saving it
+    // Securely hash (scramble) the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create the user in the database
+    // Create and save the new student account in the database
     const newUser = await Student.create({ 
       firstName: firstName, 
       lastName: lastName, 
@@ -66,8 +66,7 @@ router.post('/sign-in', async (req, res) => {
       password: hashedPassword 
     });
 
-
-    // Redirect to dashboard
+    // Redirect to the student dashboard after successful sign-up
     res.redirect('/studentDB'); 
   } catch (error) {
     console.error('Error during signup:', error);
@@ -75,47 +74,46 @@ router.post('/sign-in', async (req, res) => {
   }
 });
 
-
-
-// Login route
+// Login route (when an existing student logs in)
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body; // Get login details from the form
 
   try {
+    // Make sure both email and password are entered
     if (!email || !password) {
       return res.status(400).send('All fields are required.');
     }
 
-    // Find the student by email
+    // Find the student in the database using their email
     const student = await Student.findOne({ where: { email } });
 
+    // If no student is found, send an error message
     if (!student) {
       return res.status(404).send('Student not found.');
     }
 
-    // Compare the provided password with the stored hash
+    // Compare the entered password with the stored hashed password
     const isValid = await bcrypt.compare(password, student.password);
     if (!isValid) {
       return res.status(400).send('Invalid credentials.');
     }
 
-    // Generate a JWT token
+    // Create a login token that expires in 1 hour
     const token = jwt.sign({ userId: student.id, email: student.email }, process.env.SECRET_KEY, { expiresIn: '1h' });
 
-    // Send token in a cookie
+    // Send the token as a cookie (this keeps the user logged in)
     res.cookie('auth_token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true, // Prevents hackers from accessing the cookie
+      secure: process.env.NODE_ENV === 'production', // Only secure in real-world applications
       maxAge: 3600000, // 1 hour
     });
 
-    // Redirect to student dashboard
+    // Redirect to the student dashboard
     res.redirect('/studentDB');
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).send('Internal server error.');
   }
 });
-
 
 export default router;
