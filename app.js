@@ -31,9 +31,13 @@ app.get('/', (req, res) => {
 });
 
 // Student dashboard route
-app.get('/studentDB', (req, res) => {
-  res.render('studentDB'); // Render the student dashboard
+app.get('/', (req, res) => {
+  if (req.cookies.auth_token && req.path !== '/studentDB') {
+    return res.redirect('/studentDB'); // 
+  }
+  res.render('visitorDB');
 });
+
 
 // Database and server initialization
 const startServer = async () => {
