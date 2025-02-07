@@ -37,10 +37,29 @@ Greenfield University uses Sequelize with MySQL for database management. Make su
 **DB = Dashboard, NOT Database**: Please note that DB refers to the dashboard in this project, not the database. This distinction is important to avoid confusion, as mentioned by the project lead.
 
 ## Features
-- **Student Authentication**: The app includes authentication for students to register and log in.
+
+- **Student Authentication**: Students can register and log in securely using JWT tokens.
 - **Course Registration**: Students can register for courses through the dashboard.
 - **Campus Event Calendar**: Users can view, add, and manage campus events through the calendar.
 - **Dynamic Event Management**: The system allows adding events with details like title, description, date, and category.
+- **Protected Routes**: Certain pages (e.g., dashboard, course selection) require authentication to access.
+- **Visitor Calendar**: A public calendar is available for visitors to view events without logging in.
+
+## Authentication Flow
+
+### Sign-Up:
+- Students can create an account by providing their details (first name, last name, email, student ID, program, password, etc.).
+- Passwords are hashed using `bcrypt` before being stored in the database.
+- A JWT token is generated and stored in a cookie to keep the user logged in.
+
+### Login:
+- Students log in using their email and password.
+- The system verifies the credentials and generates a JWT token if valid.
+- The token is stored in a cookie for session management.
+
+### Logout:
+- The `/logout` route clears the authentication cookie, logging the user out.
+
 
 ## Technology Stack
 - **Backend**: Node.js, Express.js
@@ -54,6 +73,13 @@ Greenfield University uses Sequelize with MySQL for database management. Make su
 - Navigate to the student dashboard at `/studentDB` after logging in.
 - View and manage campus events, add new events, and register for courses through the dashboard.
 
+## Contributing
+
+Contributions are welcome! If you'd like to contribute, please follow these steps:
+
+1. **Fork** the repository.
+2. **Create a new branch** for your feature or bugfix.
+3. **Submit a pull request** with a detailed description of your changes.
 
 
 
